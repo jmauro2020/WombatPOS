@@ -147,7 +147,7 @@ group = menu.addGroup("Menu.Backoffice");
 
 // Deprecated options. Only required with Openbravo ERP software
 //       submenu.addTitle("Menu.Maintenance.ERP");
-//       submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
-//       submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
+       submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
+       submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
 
     group.addExitAction();
