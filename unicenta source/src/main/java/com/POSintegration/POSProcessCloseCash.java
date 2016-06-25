@@ -1,4 +1,4 @@
-package com.ghintech.puntocom.process;
+package com.ghintech.puntocom.process;  //yup..
 
 import com.ghintech.puntocom.model.MBankAccount_Commission;
 import com.ghintech.puntocom.model.M_POSCloseCash;
