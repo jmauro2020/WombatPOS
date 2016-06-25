@@ -643,3 +643,7 @@ CREATE TABLE DRAWEROPENED (
 );
 
 INSERT INTO APPLICATIONS(ID, NAME, VERSION) VALUES($APP_ID{}, $APP_NAME{}, $APP_VERSION{});
+
+INSERT INTO RESOURCES(ID, NAME, RESTYPE, CONTENT) VALUES('31',
+'openbravo.properties', 0,
+$FILE{/com/openbravo/pos/templates/openbravo.properties.txt});
