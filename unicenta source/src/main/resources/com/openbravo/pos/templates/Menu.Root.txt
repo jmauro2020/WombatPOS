@@ -145,9 +145,9 @@ group = menu.addGroup("Menu.Backoffice");
     group.addPanel("/com/openbravo/images/printer.png", "Menu.Printer", "com.openbravo.pos.panels.JPanelPrinter");
     group.addPanel("/com/openbravo/images/timer.png", "Menu.CheckInCheckOut", "com.openbravo.pos.epm.JPanelEmployeePresence");
 
-// Deprecated options. Only required with Openbravo ERP software
-//     submenu.addTitle("Menu.Maintenance.ERP");
-//     submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
-//     submenu.addExecution("/com/openbravo/images/openbravo.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
+  Deprecated options. Only required with Openbravo ERP software
+    submenu.addTitle("Menu.Maintenance.ERP");
+    submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
+    submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
 
     group.addExitAction();
