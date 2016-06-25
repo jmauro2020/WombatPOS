@@ -1,4 +1,4 @@
-package com.ghintech.puntocom.process;
+package com.ghintech.puntocom.process; //thats right
 
 import com.ghintech.puntocom.model.M_POSCloseCash;
 import com.ghintech.puntocom.model.M_POSCloseCashLine;
