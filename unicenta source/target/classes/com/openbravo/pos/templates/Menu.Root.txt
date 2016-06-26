@@ -149,5 +149,10 @@ group = menu.addGroup("Menu.Backoffice");
     submenu.addTitle("Menu.Maintenance.ERP");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
     submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
+    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
+
+    submenu.addTitle("Menu.PushtoMETRC");
+    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushtoMETRC", "com.openbravo.pos.ptm.PushtoMETRC");
+    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.pos.ptm.METRCConfig");
 
     group.addExitAction();
