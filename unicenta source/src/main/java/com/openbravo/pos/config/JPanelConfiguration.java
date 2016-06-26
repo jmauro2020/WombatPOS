@@ -211,6 +211,8 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         jPanelPeripheral = new javax.swing.JPanel();
         jPanelSystem = new javax.swing.JPanel();
         jPanelTicketSetup = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jbtnRestore = new javax.swing.JButton();
         jbtnExit = new javax.swing.JButton();
@@ -257,6 +259,8 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         jPanelTicketSetup.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelTicketSetup.setLayout(new javax.swing.BoxLayout(jPanelTicketSetup, javax.swing.BoxLayout.LINE_AXIS));
         jTabbedPane1.addTab("Ticket Setup", jPanelTicketSetup);
+        jTabbedPane1.addTab("ERP", jTabbedPane2);
+        jTabbedPane1.addTab("VPN", jTabbedPane3);
 
         jbtnRestore.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtnRestore.setText(AppLocal.getIntString("Button.Factory")); // NOI18N
@@ -362,6 +366,8 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
     private javax.swing.JPanel jPanelSystem;
     private javax.swing.JPanel jPanelTicketSetup;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JButton jbtnExit;
     private javax.swing.JButton jbtnRestore;
     private javax.swing.JButton jbtnSave;
