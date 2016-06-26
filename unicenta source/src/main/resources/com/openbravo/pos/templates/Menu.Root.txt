@@ -152,7 +152,7 @@ group = menu.addGroup("Menu.Backoffice");
     submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
 
     submenu.addTitle("Menu.PushtoMETRC");
-    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushtoMETRC", "com.openbravo.pos.ptm.PushtoMETRC");
-    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.pos.ptm.METRCConfig");
+    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
+    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
 
     group.addExitAction();
