@@ -138,7 +138,6 @@ group = menu.addGroup("Menu.Backoffice");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.MissingData", "/com/openbravo/reports/missingdata.bs");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.InvalidData", "/com/openbravo/reports/invaliddata.bs");
 
-  Deprecated options. Only required with Openbravo ERP software
     submenu.addTitle("Menu.Maintenance.ERP");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
     submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
@@ -147,7 +146,6 @@ group = menu.addGroup("Menu.Backoffice");
     submenu.addTitle("Menu.Maintenance.PushtoMETRC");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
     submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
-
 
     group = menu.addGroup("Menu.System");
     group.addChangePasswordAction();
