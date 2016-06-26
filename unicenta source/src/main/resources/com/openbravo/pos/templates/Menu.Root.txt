@@ -138,6 +138,16 @@ group = menu.addGroup("Menu.Backoffice");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.MissingData", "/com/openbravo/reports/missingdata.bs");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.InvalidData", "/com/openbravo/reports/invaliddata.bs");
 
+  Deprecated options. Only required with Openbravo ERP software
+    submenu.addTitle("Menu.Maintenance.ERP");
+    submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
+    submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
+    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
+
+    submenu.addTitle("Menu.Maintenance.PushtoMETRC");
+    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
+    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
+
 
     group = menu.addGroup("Menu.System");
     group.addChangePasswordAction();
@@ -145,14 +155,5 @@ group = menu.addGroup("Menu.Backoffice");
     group.addPanel("/com/openbravo/images/printer.png", "Menu.Printer", "com.openbravo.pos.panels.JPanelPrinter");
     group.addPanel("/com/openbravo/images/timer.png", "Menu.CheckInCheckOut", "com.openbravo.pos.epm.JPanelEmployeePresence");
 
-  Deprecated options. Only required with Openbravo ERP software
-    submenu.addTitle("Menu.Maintenance.ERP");
-    submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
-    submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
-    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
-
-    submenu.addTitle("Menu.PushtoMETRC");
-    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
-    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
 
     group.addExitAction();
