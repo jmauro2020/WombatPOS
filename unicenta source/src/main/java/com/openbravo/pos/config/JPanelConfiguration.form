@@ -196,8 +196,8 @@
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="ERP">
-                <Property name="tabTitle" type="java.lang.String" value="ERP"/>
+              <JTabbedPaneConstraints tabName="ERP Setup">
+                <Property name="tabTitle" type="java.lang.String" value="ERP Setup"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -207,8 +207,8 @@
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="VPN">
-                <Property name="tabTitle" type="java.lang.String" value="VPN"/>
+              <JTabbedPaneConstraints tabName="VPN Setup">
+                <Property name="tabTitle" type="java.lang.String" value="VPN Setup"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

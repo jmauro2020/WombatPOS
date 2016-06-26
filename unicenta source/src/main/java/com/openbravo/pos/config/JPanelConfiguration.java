@@ -259,8 +259,8 @@ public class JPanelConfiguration extends JPanel implements JPanelView {
         jPanelTicketSetup.setPreferredSize(new java.awt.Dimension(0, 400));
         jPanelTicketSetup.setLayout(new javax.swing.BoxLayout(jPanelTicketSetup, javax.swing.BoxLayout.LINE_AXIS));
         jTabbedPane1.addTab("Ticket Setup", jPanelTicketSetup);
-        jTabbedPane1.addTab("ERP", jTabbedPane2);
-        jTabbedPane1.addTab("VPN", jTabbedPane3);
+        jTabbedPane1.addTab("ERP Setup", jTabbedPane2);
+        jTabbedPane1.addTab("VPN Setup", jTabbedPane3);
 
         jbtnRestore.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbtnRestore.setText(AppLocal.getIntString("Button.Factory")); // NOI18N

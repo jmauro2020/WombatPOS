@@ -86,13 +86,12 @@
                 <text bold="true">Cash</text>
             </line>
             <line>
-                <text align="left" length="22">Tendered:</text>
-                <text align ="right" length="20">${paymentline.printPaid()}</text>
+                <text align="center" length="22">Tendered:</text>
+                <text align ="center" length="20">${paymentline.printPaid()}</text>
             </line>
             <line>
-                <image>img.refundit</image>
-                <text align="left" length="22">Change:</text>
-                <text align ="right" length="20">${paymentline.printChange()}</text>
+                <text align="center" length="22">Change:</text>
+                <text align ="center" length="20">${paymentline.printChange()}</text>
             </line>
         #end
 
