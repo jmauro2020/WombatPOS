@@ -138,12 +138,12 @@ group = menu.addGroup("Menu.Backoffice");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.MissingData", "/com/openbravo/reports/missingdata.bs");
         submenu.addPanel("/com/openbravo/images/reports.png", "Menu.InvalidData", "/com/openbravo/reports/invaliddata.bs");
 
-    submenu.addTitle("Menu.Maintenance.ERP");
+    submenu.addTitle("Menu.Utilities.ERP");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
     submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
     submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
 
-    submenu.addTitle("Menu.Maintenance.PushtoMETRC");
+    submenu.addTitle("Menu.Utilities.PushtoMETRC");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
     submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
 
