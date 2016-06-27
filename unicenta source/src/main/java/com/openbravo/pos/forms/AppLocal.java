@@ -48,6 +48,7 @@ public class AppLocal {
         m_resources = new LocaleResources();
         m_resources.addBundleName("pos_messages");
         m_resources.addBundleName("erp_messages");
+        m_resources.addBundleName("vpn_messages");
     }
     
     /** Creates a new instance of AppLocal */

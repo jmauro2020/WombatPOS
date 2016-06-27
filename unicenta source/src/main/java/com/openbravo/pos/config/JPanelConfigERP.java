@@ -31,7 +31,7 @@ import java.awt.Component;
  */
 public class JPanelConfigERP extends javax.swing.JPanel implements PanelConfig {
 
-    private DirtyManager dirty = new DirtyManager();
+    private final DirtyManager dirty = new DirtyManager();
         
     /** Creates new form JPanelConfigERP */
     public JPanelConfigERP() {
@@ -207,7 +207,7 @@ public class JPanelConfigERP extends javax.swing.JPanel implements PanelConfig {
                     .addComponent(jLabelProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +229,7 @@ public class JPanelConfigERP extends javax.swing.JPanel implements PanelConfig {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 292, Short.MAX_VALUE))
+                .addGap(16, 293, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
