@@ -141,11 +141,9 @@ group = menu.addGroup("Menu.Backoffice");
     submenu.addTitle("Menu.Utilities.ERP");
     submenu.addExecution("/com/openbravo/images/import.png", "Menu.ERPProducts", "com.openbravo.possync.ProductsSyncCreate");
     submenu.addExecution("/com/openbravo/images/sales.png", "Menu.ERPOrders", "com.openbravo.possync.OrdersSyncCreate");
-    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.ERPConfig", "com.openbravo.possync.ERPConfig");
 
     submenu.addTitle("Menu.Utilities.PushtoMETRC");
-    submenu.addExecution("/com/openbravo/images/import.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
-    submenu.addPanel("/com/openbravo/images/configuration.png", "Menu.METRCConfig", "com.openbravo.metrc.METRCConfig");
+    submenu.addExecution("/com/openbravo/images/database.png", "Menu.PushToMETRC", "com.openbravo.metrc.PushToMETRC");
 
     group = menu.addGroup("Menu.System");
     group.addChangePasswordAction();
