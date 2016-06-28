@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabelId" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
@@ -31,9 +31,9 @@
                   <Component id="jLabel4" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,12 +76,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jTextField4" alignment="0" pref="60" max="32767" attributes="0"/>
-                                  <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="jtxtName" alignment="0" pref="200" max="32767" attributes="0"/>
                               <Component id="jtxtPassword" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField3" alignment="0" pref="62" max="32767" attributes="0"/>
+                              <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="129" pref="207" max="32767" attributes="0"/>
                       </Group>
