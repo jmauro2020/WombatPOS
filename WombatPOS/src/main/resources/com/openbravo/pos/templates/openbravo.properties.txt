@@ -1,0 +1,15 @@
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+  <properties>	<comment>Openbravo Websevice configuration</comment>
+  <entry key="url">http://192.168.1.2:8088/ADInterface/services</entry>
+  <entry key="id">11</entry>
+  <entry key="org">11</entry>
+  <entry key="pos">HQ Warehouse</entry>
+  <entry key="user">wombat</entry>
+  <entry key="password"wombat</entry>
+  <entry key="queue-host">localhost</entry>
+  <entry key="queue-port">61613</entry>
+  <entry key="orders-queue">/queue/Orders</entry>
+  <entry key="products-queue">/queue/Products</entry>
+  <entry key="customers-queue">/queue/Customers</entry>
+  </properties>
