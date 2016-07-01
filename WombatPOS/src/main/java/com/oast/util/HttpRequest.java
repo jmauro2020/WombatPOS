@@ -1,4 +1,4 @@
-package oast.util;
+package com.oast.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package oast.util;
+package com.oast.util;
 
 import java.util.Hashtable;
 import java.util.Map;

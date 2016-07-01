@@ -1,6 +1,6 @@
 package com.oast.config;
 
-import oast.util.Base64Coder;
+import com.oast.util.Base64Coder;
 
 public class LoginStorage {
     final OastConfigurationManager ocm;
