@@ -81,17 +81,17 @@
 	<!--  <img-width value="64"/> -->
 	<!--  <img-height value="48"/> -->
 
-	<!-- Medium Product button size in Sales screen (Default=ENABLED) -->
-   	<img-width value="80"/>
-	<img-height value="80"/>
+	<!-- Medium Product button size in Sales screen (Default=DISABLED) -->
+   	<!-- <img-width value="80"/> -->
+	<!-- <img-height value="80"/> -->
     
-<!-- Large Product button size in Sales screen (Default=DISABLED)-->
-	<!-- <img-width value="128"/> -->
-	<!-- <img-height value="96"/> -->
+<!-- Large Product button size in Sales screen (Default=ENABLED)-->
+	<img-width value="128"/>
+	<img-height value="96"/>
 <!-- END Product Button Size -->
 
 <!-- Print Receipt (Default=ENABLED) -->
-        <printselected value="true"/>
+        <printselected value="false"/>
 
 <!-- ADDITIONAL FEATURES ************************************************* -->
     <!-- SET Show Change in Cash Sale (Default=ENABLED -->
