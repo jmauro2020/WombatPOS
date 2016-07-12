@@ -37,8 +37,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
     public JPanelConfigVPN() {
         initComponents();
         
+        jTextField2.getDocument().addDocumentListener(dirty);
         jTextField3.getDocument().addDocumentListener(dirty);
-        jTextField4.getDocument().addDocumentListener(dirty);
         jtxtURL.getDocument().addDocumentListener(dirty);
         jtxtName.getDocument().addDocumentListener(dirty);
         jtxtPassword.getDocument().addDocumentListener(dirty);
@@ -72,8 +72,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
 
         jtxtFile.setText(config.getProperty("vpn.file"));    
         jtxtURL.setText(config.getProperty("vpn.URL"));
-        jTextField4.setText(config.getProperty("vpn.updr"));
-        jTextField3.setText(config.getProperty("vpn.updf"));
+        jTextField3.setText(config.getProperty("vpn.updr"));
+        jTextField2.setText(config.getProperty("vpn.updf"));
         
         String sVPNUser = config.getProperty("vpn.user");
         String sVPNPassword = config.getProperty("vpn.password");        
@@ -97,8 +97,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
         
         config.setProperty("vpn.file", jtxtFile.getText());
         config.setProperty("vpn.URL", jtxtURL.getText());
-        config.setProperty("vpn.updr", jTextField4.getText());
-        config.setProperty("vpn.updf", jTextField3.getText());
+        config.setProperty("vpn.updr", jTextField3.getText());
+        config.setProperty("vpn.updf", jTextField2.getText());
         
         config.setProperty("vpn.user", jtxtName.getText());
         AltEncrypter cypher = new AltEncrypter("cypherkey" + jtxtName.getText());             
@@ -118,8 +118,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
         jPanel1 = new javax.swing.JPanel();
         jtxtFile = new javax.swing.JTextField();
         jtxtURL = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jtxtName = new javax.swing.JTextField();
         jtxtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -146,9 +146,9 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jtxtName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -167,8 +167,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtxtName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(jtxtPassword)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                            .addComponent(jTextField4))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                            .addComponent(jTextField3))
                         .addGap(129, 207, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +190,9 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtxtURL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jtxtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,8 +276,8 @@ public class JPanelConfigVPN extends javax.swing.JPanel implements PanelConfig {
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelProperties;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel jlabelUrl;
     private javax.swing.JTextField jtxtFile;
     private javax.swing.JTextField jtxtName;

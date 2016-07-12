@@ -78,8 +78,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jtxtName" alignment="0" pref="200" max="32767" attributes="0"/>
                               <Component id="jtxtPassword" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField3" alignment="0" pref="62" max="32767" attributes="0"/>
-                              <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextField2" alignment="0" pref="62" max="32767" attributes="0"/>
+                              <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="129" pref="207" max="32767" attributes="0"/>
                       </Group>
@@ -111,9 +111,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jtxtURL" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jTextField2" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField4" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jTextField3" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jtxtName" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -147,14 +147,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtURLActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="jTextField2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="jTextField3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
