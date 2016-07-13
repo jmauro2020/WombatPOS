@@ -800,6 +800,14 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                 // print report
                 printPayments("Printer.CloseCash");
                 
+                // Ask if a reprint is required until it has been printed successfully
+                while (res == JOptionPane.YES_OPTION) {
+                    res = JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.wannaclosecashreprint"), AppLocal.getIntString("message.title"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if (res == JOptionPane.YES_OPTION) {
+                        printPayments("Printer.CloseCash");
+                    }
+                }
+                
                 // TODO: make csv
 
                 // Mostramos el mensaje
