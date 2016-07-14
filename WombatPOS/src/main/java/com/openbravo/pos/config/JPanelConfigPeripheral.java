@@ -375,6 +375,7 @@ public class JPanelConfigPeripheral extends javax.swing.JPanel implements PanelC
         jcboMachineScale.addItem("casiopd1");
         jcboMachineScale.addItem("caspdII");        
         jcboMachineScale.addItem("dialog1");
+        jcboMachineScale.addItem("ek1200");
         jcboMachineScale.addItem("samsungesp");
 
         jcboSerialScale.addItem("COM1");
@@ -630,7 +631,8 @@ public class JPanelConfigPeripheral extends javax.swing.JPanel implements PanelC
         p = new StringParser(config.getProperty("machine.scale"));
         sparam = p.nextToken(':');
         jcboMachineScale.setSelectedItem(sparam);
-        if ("casiopd1".equals(sparam) 
+        if ("ek1200".equals(sparam)
+                || "casiopd1".equals(sparam) 
                 || "caspdII".equals(sparam)
                 || "dialog1".equals(sparam) 
                 || "samsungesp".equals(sparam)) {
@@ -806,7 +808,8 @@ public class JPanelConfigPeripheral extends javax.swing.JPanel implements PanelC
 
 //JG 20 Aug 2013 Add Casio PD1 Scale
         String sMachineScale = comboValue(jcboMachineScale.getSelectedItem());
-        if ("casiopd1".equals(sMachineScale) 
+        if ("ek1200".equals(sMachineScale)
+                || "casiopd1".equals(sMachineScale) 
                 || "caspdII".equals(sMachineScale)
                 || "dialog1".equals(sMachineScale) 
                 || "samsungesp".equals(sMachineScale)) {
@@ -2029,7 +2032,8 @@ public class JPanelConfigPeripheral extends javax.swing.JPanel implements PanelC
         CardLayout cl = (CardLayout) (m_jScaleParams.getLayout());
 
         // JG 29 Aug 13 - Add Casio PD1 Scale
-        if ("casiopd1".equals(jcboMachineScale.getSelectedItem()) 
+        if ("ek1200".equals(jcboMachineScale.getSelectedItem())
+                || "casiopd1".equals(jcboMachineScale.getSelectedItem()) 
                 || "caspdII".equals(jcboMachineScale.getSelectedItem()) 
                 || "dialog1".equals(jcboMachineScale.getSelectedItem()) 
                 || "samsungesp".equals(jcboMachineScale.getSelectedItem())) {

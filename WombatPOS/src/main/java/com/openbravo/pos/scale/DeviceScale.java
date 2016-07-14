@@ -50,6 +50,9 @@ public class DeviceScale {
             case "dialog1":
                 m_scale = new ScaleComm(sScaleParam1);
                 break;
+            case "ek1200":
+                m_scale = new ScaleEK1200(sScaleParam1);
+                break;
             case "samsungesp":
                 m_scale = new ScaleSamsungEsp(sScaleParam1);
                 break;
