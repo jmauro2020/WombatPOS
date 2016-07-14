@@ -76,12 +76,12 @@ public class PeopleView extends JPanel implements EditorRecord {
         m_sPassword = null;
         m_RoleModel.setSelectedKey(null);
         m_jVisible.setSelected(false);
-        jcard.setText(null);
+        jibutton.setText(null);
         m_jImage.setImage(null);
         m_jName.setEnabled(false);
         m_jRole.setEnabled(false);
         m_jVisible.setEnabled(false);
-        jcard.setEnabled(false);
+        jibutton.setEnabled(false);
         m_jImage.setEnabled(false);
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
@@ -98,12 +98,12 @@ public class PeopleView extends JPanel implements EditorRecord {
         m_sPassword = null;
         m_RoleModel.setSelectedKey(null);
         m_jVisible.setSelected(true);
-        jcard.setText(null);
+        jibutton.setText(null);
         m_jImage.setImage(null);
         m_jName.setEnabled(true);
         m_jRole.setEnabled(true);
         m_jVisible.setEnabled(true);
-        jcard.setEnabled(true);
+        jibutton.setEnabled(true);
         m_jImage.setEnabled(true);
         jButton1.setEnabled(true);
         jButton2.setEnabled(true);
@@ -122,13 +122,13 @@ public class PeopleView extends JPanel implements EditorRecord {
         m_sPassword = Formats.STRING.formatValue(people[2]);
         m_RoleModel.setSelectedKey(people[3]);
         m_jVisible.setSelected(((Boolean) people[4]).booleanValue());
-        jcard.setText(Formats.STRING.formatValue(people[5]));
+        jibutton.setText(Formats.STRING.formatValue(people[5]));
         m_jImage.setImage((BufferedImage) people[6]);
         
         m_jName.setEnabled(false);
         m_jRole.setEnabled(false);
         m_jVisible.setEnabled(false);
-        jcard.setEnabled(false);
+        jibutton.setEnabled(false);
         m_jImage.setEnabled(false);        
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
@@ -147,13 +147,13 @@ public class PeopleView extends JPanel implements EditorRecord {
         m_sPassword = Formats.STRING.formatValue(people[2]);
         m_RoleModel.setSelectedKey(people[3]);
         m_jVisible.setSelected(((Boolean) people[4]).booleanValue());
-        jcard.setText(Formats.STRING.formatValue(people[5]));
+        jibutton.setText(Formats.STRING.formatValue(people[5]));
         m_jImage.setImage((BufferedImage) people[6]);
         
         m_jName.setEnabled(true);
         m_jRole.setEnabled(true);
         m_jVisible.setEnabled(true);
-        jcard.setEnabled(true);
+        jibutton.setEnabled(true);
         m_jImage.setEnabled(true);
         jButton1.setEnabled(true);
         jButton2.setEnabled(true);
@@ -173,7 +173,7 @@ public class PeopleView extends JPanel implements EditorRecord {
         people[2] = Formats.STRING.parseValue(m_sPassword);
         people[3] = m_RoleModel.getSelectedKey();
         people[4] = Boolean.valueOf(m_jVisible.isSelected());
-        people[5] = Formats.STRING.parseValue(jcard.getText());
+        people[5] = Formats.STRING.parseValue(jibutton.getText());
         people[6] = m_jImage.getImage();
         return people;
     }
@@ -222,7 +222,7 @@ public class PeopleView extends JPanel implements EditorRecord {
         jButton1 = new javax.swing.JButton();
         m_jRole = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jcard = new javax.swing.JTextField();
+        jibutton = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
@@ -230,7 +230,7 @@ public class PeopleView extends JPanel implements EditorRecord {
         setPreferredSize(new java.awt.Dimension(531, 400));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/fileclose.png"))); // NOI18N
-        jButton3.setToolTipText("Clear Key");
+        jButton3.setToolTipText("Clear iButton");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -266,11 +266,11 @@ public class PeopleView extends JPanel implements EditorRecord {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText(AppLocal.getIntString("label.role")); // NOI18N
 
-        jcard.setEditable(false);
-        jcard.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jibutton.setEditable(false);
+        jibutton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/openbravo/images/encrypted.png"))); // NOI18N
-        jButton2.setToolTipText("Create Key");
+        jButton2.setToolTipText("Read iButton");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -278,7 +278,7 @@ public class PeopleView extends JPanel implements EditorRecord {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText(AppLocal.getIntString("label.card")); // NOI18N
+        jLabel5.setText(AppLocal.getIntString("label.iButton")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -308,7 +308,7 @@ public class PeopleView extends JPanel implements EditorRecord {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcard, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jibutton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -333,7 +333,7 @@ public class PeopleView extends JPanel implements EditorRecord {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcard, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jibutton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,7 +365,7 @@ public class PeopleView extends JPanel implements EditorRecord {
         
         if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
 // JG 8 Jan 14 - Change "c" case to upper "C"        jcard.setText("c" + StringUtils.getCardNumber());
-            jcard.setText("C" + StringUtils.getCardNumber());
+            jibutton.setText("C" + StringUtils.getCardNumber());
             m_Dirty.setDirty(true);
         }
         
@@ -374,7 +374,7 @@ public class PeopleView extends JPanel implements EditorRecord {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardremove"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
-            jcard.setText(null);
+            jibutton.setText(null);
             m_Dirty.setDirty(true);
         }
         
@@ -390,7 +390,7 @@ public class PeopleView extends JPanel implements EditorRecord {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jcard;
+    private javax.swing.JTextField jibutton;
     private com.openbravo.data.gui.JImageEditor m_jImage;
     private javax.swing.JTextField m_jName;
     private javax.swing.JComboBox m_jRole;
