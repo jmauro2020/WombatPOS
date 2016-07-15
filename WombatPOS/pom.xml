@@ -118,7 +118,7 @@
             <artifactId>rxtxcomm</artifactId>
             <version>2.2</version>
         </dependency>
-
+     
         <dependency>
             <groupId>org.jpos</groupId>
             <artifactId>jpos</artifactId>
@@ -327,15 +327,10 @@
             <artifactId>OneWireAPI</artifactId>
             <version>1.10</version>
         </dependency>
-        
-        
-        
-        
-        
-
+  
     </dependencies>
     
-    <build>
+        <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -359,6 +354,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <archive>
                         <manifest>
