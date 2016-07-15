@@ -33,6 +33,10 @@ import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.scripting.ScriptEngine;
 import com.openbravo.pos.scripting.ScriptException;
 import com.openbravo.pos.scripting.ScriptFactory;
+import com.openbravo.data.loader.PreparedSentence;
+import com.openbravo.data.loader.SerializerReadClass;
+import com.openbravo.data.loader.SerializerWriteString;
+import com.openbravo.pos.ticket.TicketLineInfo;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -43,6 +47,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+import java.util.List;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -801,6 +807,23 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                 printPayments("Printer.CloseCash");
                 
                 // TODO: make csv
+                PreparedSentence ps_csv = new PreparedSentence(s,
+                    "SELECT L.TICKET, L.LINE, L.PRODUCT, L.ATTRIBUTESETINSTANCE_ID, L.UNITS, L.PRICE, T.ID, T.NAME, T.CATEGORY, T.CUSTCATEGORY, T.PARENTID, T.RATE, T.RATECASCADE, T.RATEORDER, L.ATTRIBUTES "
+                    + "FROM TICKETLINES L, TAXES T WHERE L.TAXID = T.ID AND L.TICKET = ? ORDER BY L.LINE",
+                    SerializerWriteString.INSTANCE, new SerializerReadClass(
+                        TicketLineInfo.class)
+                );
+
+                List csv_list = ps_csv.list(m_App.getActiveCashIndex());
+                String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + "backupcsv" + dNow + ".csv";
+
+                new File(name).mkdirs(); // ensures the csv export file exists
+                
+                CSVWriter csv_wr = new CSVWriter(name);
+                
+                for(Object elem: csv_list){
+                    csv_wr.write((String[]) elem);
+                }
 
                 // Mostramos el mensaje
                 JOptionPane.showMessageDialog(this, AppLocal.getIntString("message.closecashok"), AppLocal.getIntString("message.title"), JOptionPane.INFORMATION_MESSAGE);
