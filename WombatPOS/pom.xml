@@ -114,12 +114,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
-            <artifactId>rxtxcomm</artifactId>
-            <version>2.2</version>
-        </dependency>
-     
-        <dependency>
             <groupId>org.jpos</groupId>
             <artifactId>jpos</artifactId>
             <version>2.0.0</version>
@@ -327,7 +321,13 @@
             <artifactId>OneWireAPI</artifactId>
             <version>1.10</version>
         </dependency>
-  
+        
+        <dependency>
+            <groupId>org.rxtx</groupId>
+            <artifactId>rxtx</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        
     </dependencies>
     
         <build>
@@ -445,7 +445,7 @@
 
         </plugins>
         
-        <finalName>unicentaopos</finalName>
+        <finalName>WombatPOS</finalName>
         
     </build>
     

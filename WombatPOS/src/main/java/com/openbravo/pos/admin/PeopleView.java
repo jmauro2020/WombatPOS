@@ -19,12 +19,24 @@
 
 package com.openbravo.pos.admin;
 
+import com.dalsemi.onewire.OneWireAccessProvider;
+import com.dalsemi.onewire.OneWireException;
+import com.dalsemi.onewire.adapter.DSPortAdapter;
+import com.dalsemi.onewire.application.monitor.DeviceMonitor;
+import com.dalsemi.onewire.application.monitor.DeviceMonitorEvent;
+import com.dalsemi.onewire.application.monitor.DeviceMonitorEventListener;
+import com.dalsemi.onewire.application.monitor.DeviceMonitorException;
+import com.dalsemi.onewire.container.OneWireContainer;
+import com.dalsemi.onewire.utils.Address;
 import com.openbravo.basic.BasicException;
 import com.openbravo.data.gui.ComboBoxValModel;
+import com.openbravo.data.gui.JMessageDialog;
+import com.openbravo.data.gui.MessageInf;
 import com.openbravo.data.loader.SentenceList;
 import com.openbravo.data.user.*;
 import com.openbravo.format.Formats;
 import com.openbravo.pos.forms.AppLocal;
+import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.util.Hashcypher;
 import com.openbravo.pos.util.StringUtils;
 import java.awt.Component;
@@ -36,10 +48,11 @@ import javax.swing.*;
  *
  * @author adrianromero
  */
-public class PeopleView extends JPanel implements EditorRecord {
+public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEventListener {
 
     private Object m_oId;
     private String m_sPassword;
+    private DataLogicSystem m_dlSystem;
     
     private final DirtyManager m_Dirty;
     
@@ -66,6 +79,135 @@ public class PeopleView extends JPanel implements EditorRecord {
         writeValueEOF();
     }
 
+    private DSPortAdapter m_oneWireAdapter;
+    private DeviceMonitor m_oneWireMonitor;
+    
+    private void initIButtonMonitor() {
+    // the 1-wire monitor should not be reinitialised.
+        assert m_oneWireMonitor == null;
+
+        try
+        {
+            m_oneWireAdapter = OneWireAccessProvider.getDefaultAdapter();
+            System.out.println();
+            System.out.println("1-Wire Adapter: " + m_oneWireAdapter.getAdapterName()
+                            + " Port: " + m_oneWireAdapter.getPortName());
+            System.out.println();
+
+            // restrict the search to 'serial number' iButtons - NOTE: these
+            // restrictions do not filter the DeviceMonitorEvents
+            m_oneWireAdapter.setSearchAllDevices();
+            m_oneWireAdapter.targetFamily(0x01);
+            m_oneWireAdapter.setSpeed(DSPortAdapter.SPEED_REGULAR);
+
+            m_oneWireMonitor = new DeviceMonitor(m_oneWireAdapter);
+
+            // trigger a REMOVAL event the n-th time an iButton is found to be
+            // missing.  Reducing this value can speed up detection but may
+            // result in false 'removals' if the user fumbles with the iButton.
+            m_oneWireMonitor.setMaxStateCount(100);
+
+            m_oneWireMonitor.addDeviceMonitorEventListener(this);
+
+            System.out.println("Starting 1-wire monitor: " + m_oneWireMonitor.toString());
+            new Thread(m_oneWireMonitor).start();
+        }
+        catch (OneWireException e) {
+            JMessageDialog.showMessage(this, new MessageInf(MessageInf.SGN_WARNING, "No iButton adapter found.", e));
+        }
+    }
+
+    private void shutdownIButtonMonitor() {
+        if(m_oneWireMonitor != null)
+        {
+            System.out.println("Killing 1-wire monitor: " + m_oneWireMonitor.toString());
+            m_oneWireMonitor.killMonitor();
+
+            try {
+                m_oneWireAdapter.freePort();
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public void releaseResources() {
+        shutdownIButtonMonitor();
+    }
+
+    final static int UNIQUE_KEY_FAMILY = 0x01;
+
+    private boolean isDeviceRelevant(OneWireContainer container)
+    {
+        String iButtonId = container.getAddressAsString();
+
+        // an adapter can have its own internal address - don't confuse this
+        // with an arriving key
+        try {
+            if(container.getAdapter().getAdapterAddress().equals(iButtonId))
+                return false;
+        }
+        catch(OneWireException e) {}
+
+        // only respond to the 'serial number' family of iButtons (the least
+        // significant byte of the address defines the device family)
+        int familyNumber = Address.toByteArray(iButtonId)[0];
+        return (familyNumber == UNIQUE_KEY_FAMILY);
+    }
+    
+    /** Called when an iButton is inserted.
+     * @param devt */
+    @Override
+    public void deviceArrival(DeviceMonitorEvent devt)
+    {
+        assert m_dlSystem != null;
+        
+        for (int i = 0; i < devt.getDeviceCount(); i++) {
+            OneWireContainer container = devt.getContainerAt(i);            
+            if(!isDeviceRelevant(container))
+                continue;
+            
+            String iButtonId = devt.getAddressAsStringAt(i);
+            System.out.println("iButton inserted: "
+                    + iButtonId + ", "
+                    + container.getName() + ", "
+                    + container.getAlternateNames() + ", "
+                    + container.getDescription());
+        }
+    }
+
+    /** Called when an iButton is removed.
+     * @param devt */
+    @Override
+    public void deviceDeparture(DeviceMonitorEvent devt)
+    {
+        for(int i = 0; i < devt.getDeviceCount(); i++) {
+            OneWireContainer container = devt.getContainerAt(i);
+            if(!isDeviceRelevant(container))
+                continue;
+
+            String iButtonId = devt.getAddressAsStringAt(i);
+            System.out.println("iButton removed: " + iButtonId);
+            
+//            if(m_principalapp != null) {
+//                AppUser currentUser = m_principalapp.getUser();
+//                if(currentUser != null && currentUser.getCard().equals(iButtonId))
+//                    closeAppView();
+//            }
+        }
+    }
+    
+    /**
+     *
+     * @param dexc
+     */
+    @Override
+    public void networkException(DeviceMonitorException dexc)
+    {
+        System.out.println("ERROR: " + dexc.toString());
+    }
+    
     /**
      *
      */
@@ -124,7 +266,6 @@ public class PeopleView extends JPanel implements EditorRecord {
         m_jVisible.setSelected(((Boolean) people[4]).booleanValue());
         jibutton.setText(Formats.STRING.formatValue(people[5]));
         m_jImage.setImage((BufferedImage) people[6]);
-        
         m_jName.setEnabled(false);
         m_jRole.setEnabled(false);
         m_jVisible.setEnabled(false);
@@ -361,14 +502,21 @@ public class PeopleView extends JPanel implements EditorRecord {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        
-        if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+//if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
 // JG 8 Jan 14 - Change "c" case to upper "C"        jcard.setText("c" + StringUtils.getCardNumber());
-            jibutton.setText("C" + StringUtils.getCardNumber());
-            m_Dirty.setDirty(true);
-        }
-        
+//            jibutton.setText(StringUtils.getCardNumber());
+        String iButtonId;
+        iButtonId = "12345";
+            if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+                initIButtonMonitor();
+                jibutton.setText(iButtonId); 
+                shutdownIButtonMonitor();
+                m_Dirty.setDirty(true);
+            } else {
+                 jibutton.setText(StringUtils.getCardNumber());
+                 m_Dirty.setDirty(true);
+            }
+            
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -396,5 +544,5 @@ public class PeopleView extends JPanel implements EditorRecord {
     private javax.swing.JComboBox m_jRole;
     private javax.swing.JCheckBox m_jVisible;
     // End of variables declaration//GEN-END:variables
-    
+ 
 }

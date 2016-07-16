@@ -425,15 +425,15 @@ public class JRootApp extends JPanel implements AppView, DeviceMonitorEventListe
         String newText = m_props.getProperty("start.text");
         if (newText != null) {
             if (newText.equals("")){
-            jLabel1.setText("<html><center>uniCenta oPOS - Touch Friendly Point of Sale<br>" +
-            "Copyright \u00A9 2009-2015 uniCenta <br>" +
+            jLabel1.setText("<html><center>WombatPOS - Secure Point of Sale<br>" +
+            "Copyright \u00A9 2016 Wombat Limited <br>" +
             "http://www.unicenta.com/<br>" +
             "<br>" +
-            "uniCenta oPOS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>" +
+            "WombatPOS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>" +
             "<br>" +
-            "uniCenta oPOS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br>" +
+            "WombatPOS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br>" +
             "<br>" +
-            "You should have received a copy of the GNU General Public License along with uniCenta oPOS.  If not, see http://www.gnu.org/licenses/<br>" +
+            "You should have received a copy of the GNU General Public License along with WombatPOS.  If not, see http://www.gnu.org/licenses/<br>" +
             "</center>");}
             else{
             try {    
