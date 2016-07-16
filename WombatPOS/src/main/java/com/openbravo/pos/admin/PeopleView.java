@@ -161,22 +161,24 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
     /** Called when an iButton is inserted.
      * @param devt */
     @Override
-    public void deviceArrival(DeviceMonitorEvent devt)
+    public void deviceArrival(DeviceMonitorEvent devt2)
     {
         assert m_dlSystem != null;
         
-        for (int i = 0; i < devt.getDeviceCount(); i++) {
-            OneWireContainer container = devt.getContainerAt(i);            
+        for (int i = 0; i < devt2.getDeviceCount(); i++) {
+            OneWireContainer container = devt2.getContainerAt(i);            
             if(!isDeviceRelevant(container))
                 continue;
             
-            String iButtonId = devt.getAddressAsStringAt(i);
-            System.out.println("iButton inserted: "
+            String iButtonId = devt2.getAddressAsStringAt(i);
+                    System.out.println("iButton inserted: "
                     + iButtonId + ", "
                     + container.getName() + ", "
                     + container.getAlternateNames() + ", "
                     + container.getDescription());
             iButtonGlobal = iButtonGlobal + iButtonId;
+            
+            
      
         }
     }
