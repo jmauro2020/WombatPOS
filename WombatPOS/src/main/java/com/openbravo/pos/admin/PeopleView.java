@@ -105,7 +105,7 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
             // trigger a REMOVAL event the n-th time an iButton is found to be
             // missing.  Reducing this value can speed up detection but may
             // result in false 'removals' if the user fumbles with the iButton.
-            m_oneWireMonitor.setMaxStateCount(100);
+            m_oneWireMonitor.setMaxStateCount(1000);
 
             m_oneWireMonitor.addDeviceMonitorEventListener(this);
 
@@ -513,8 +513,8 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 //        iButtonId = "12345";
             if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
                 initIButtonMonitor();
-                jibutton.setText("iButton: " + iButtonGlobal); 
-                shutdownIButtonMonitor();
+                jibutton.setText("" + iButtonGlobal); 
+             //   shutdownIButtonMonitor();
                 m_Dirty.setDirty(true);
             } else {
             }
