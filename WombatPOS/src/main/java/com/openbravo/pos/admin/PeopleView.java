@@ -176,7 +176,7 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
                     + container.getName() + ", "
                     + container.getAlternateNames() + ", "
                     + container.getDescription());
-            iButtonGlobal = iButtonId;
+            iButtonGlobal = iButtonGlobal + iButtonId;
      
         }
     }
@@ -513,7 +513,7 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 //        iButtonId = "12345";
             if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
                 initIButtonMonitor();
-                jibutton.setText(iButtonGlobal); 
+                jibutton.setText("iButton: " + iButtonGlobal); 
                 shutdownIButtonMonitor();
                 m_Dirty.setDirty(true);
             } else {
