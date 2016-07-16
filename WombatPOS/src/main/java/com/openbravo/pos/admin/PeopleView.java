@@ -156,7 +156,7 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
         return (familyNumber == UNIQUE_KEY_FAMILY);
     }
    
-    String iButtonGlobal = "";
+    String iButtonGlobal = null;
     
     /** Called when an iButton is inserted.
      * @param devt */
