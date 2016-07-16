@@ -155,6 +155,8 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
         int familyNumber = Address.toByteArray(iButtonId)[0];
         return (familyNumber == UNIQUE_KEY_FAMILY);
     }
+   
+    String iButtonGlobal = null;
     
     /** Called when an iButton is inserted.
      * @param devt */
@@ -174,6 +176,8 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
                     + container.getName() + ", "
                     + container.getAlternateNames() + ", "
                     + container.getDescription());
+            iButtonGlobal = iButtonId;
+     
         }
     }
 
@@ -505,18 +509,16 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 //if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
 // JG 8 Jan 14 - Change "c" case to upper "C"        jcard.setText("c" + StringUtils.getCardNumber());
 //            jibutton.setText(StringUtils.getCardNumber());
-        String iButtonId;
-        iButtonId = "12345";
+//        String iButtonId;
+//        iButtonId = "12345";
             if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
                 initIButtonMonitor();
-                jibutton.setText(iButtonId); 
+                jibutton.setText(iButtonGlobal); 
                 shutdownIButtonMonitor();
                 m_Dirty.setDirty(true);
             } else {
-                 jibutton.setText(StringUtils.getCardNumber());
-                 m_Dirty.setDirty(true);
             }
-            
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -544,5 +546,5 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
     private javax.swing.JComboBox m_jRole;
     private javax.swing.JCheckBox m_jVisible;
     // End of variables declaration//GEN-END:variables
- 
+
 }
