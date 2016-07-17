@@ -159,24 +159,25 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
     String iButtonGlobal = null;
     
     /** Called when an iButton is inserted.
-     * @param devt2
+     * @param devt
      * */
     @Override
-    public void deviceArrival(DeviceMonitorEvent devt2)
+    public void deviceArrival(DeviceMonitorEvent devt)
     {
         assert m_dlSystem != null;
         
-        for (int i = 0; i < devt2.getDeviceCount(); i++) {
-            OneWireContainer container = devt2.getContainerAt(i);            
+        for (int i = 0; i < devt.getDeviceCount(); i++) {
+            OneWireContainer container = devt.getContainerAt(i);            
             if(!isDeviceRelevant(container))
                 continue;
             
-            String iButtonId = devt2.getAddressAsStringAt(i);
+            String iButtonId = devt.getAddressAsStringAt(i);
                     System.out.println("iButton inserted: "
                     + iButtonId + ", "
                     + container.getName() + ", "
                     + container.getAlternateNames() + ", "
                     + container.getDescription());
+            iButtonGlobal = "";        
             iButtonGlobal = iButtonGlobal + iButtonId;
             
             
@@ -514,14 +515,14 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 //            jibutton.setText(StringUtils.getCardNumber());
 //        String iButtonId;
 //        iButtonId = "12345";
+            initIButtonMonitor();
             if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
-                initIButtonMonitor();
                 jibutton.setText("" + iButtonGlobal); 
-             //   shutdownIButtonMonitor();
                 m_Dirty.setDirty(true);
+                iButtonGlobal = "";
             } else {
             }
-
+            shutdownIButtonMonitor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
