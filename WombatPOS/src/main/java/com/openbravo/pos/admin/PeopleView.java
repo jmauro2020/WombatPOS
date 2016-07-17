@@ -105,7 +105,7 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
             // trigger a REMOVAL event the n-th time an iButton is found to be
             // missing.  Reducing this value can speed up detection but may
             // result in false 'removals' if the user fumbles with the iButton.
-            m_oneWireMonitor.setMaxStateCount(1000);
+            m_oneWireMonitor.setMaxStateCount(100);
 
             m_oneWireMonitor.addDeviceMonitorEventListener(this);
 
@@ -516,7 +516,8 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 //        String iButtonId;
 //        iButtonId = "12345";
             initIButtonMonitor();
-            if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+//            if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+            if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.ibuttonnew"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
                 jibutton.setText("" + iButtonGlobal); 
                 m_Dirty.setDirty(true);
                 iButtonGlobal = "";
@@ -527,7 +528,8 @@ public class PeopleView extends JPanel implements EditorRecord, DeviceMonitorEve
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardremove"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+//        if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.cardremove"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
+        if (JOptionPane.showConfirmDialog(this, AppLocal.getIntString("message.ibuttonremove"), AppLocal.getIntString("title.editor"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {  
             jibutton.setText(null);
             m_Dirty.setDirty(true);
         }
