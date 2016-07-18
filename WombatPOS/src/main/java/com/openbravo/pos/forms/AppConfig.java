@@ -222,9 +222,9 @@ public class AppConfig implements AppProperties {
         Locale l = Locale.getDefault();
         m_propsconfig.setProperty("user.language", l.getLanguage());
         m_propsconfig.setProperty("user.country", l.getCountry());
-        m_propsconfig.setProperty("user.variant", l.getVariant());     
-        
-        m_propsconfig.setProperty("swing.defaultlaf", System.getProperty("swing.defaultlaf", "javax.swing.plaf.metal.MetalLookAndFeel"));
+        m_propsconfig.setProperty("user.variant", l.getVariant());     // change the default skin to Emerald Dusk
+        m_propsconfig.setProperty("swing.defaultlaf", System.getProperty("swing.defaultlaf", "org.pushingpixels.substance.api.skin.SubstanceEmeraldDuskLookAndFeel"));        
+//        m_propsconfig.setProperty("swing.defaultlaf", System.getProperty("swing.defaultlaf", "javax.swing.plaf.metal.MetalLookAndFeel"));
 //        m_propsconfig.setProperty("swing.defaultlaf", System.getProperty("swing.defaultlaf", "javax.swing.plaf.synth.SynthLookAndFeel"));        
         
         m_propsconfig.setProperty("machine.printer", "screen");
