@@ -167,7 +167,8 @@ public class JRootApp extends JPanel implements AppView, DeviceMonitorEventListe
             // trigger a REMOVAL event the n-th time an iButton is found to be
             // missing.  Reducing this value can speed up detection but may
             // result in false 'removals' if the user fumbles with the iButton.
-            m_oneWireMonitor.setMaxStateCount(100);
+            // commenting out setMaxStateCount allows us to use the push button reader
+            //m_oneWireMonitor.setMaxStateCount(100);
 
             m_oneWireMonitor.addDeviceMonitorEventListener(this);
 
