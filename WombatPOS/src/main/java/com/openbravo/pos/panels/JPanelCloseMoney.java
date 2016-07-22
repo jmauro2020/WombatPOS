@@ -828,10 +828,10 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
 
                 new File(name).mkdirs(); // ensures the csv export file exists
                 
-//                CSVWriter csv_wr = new CSVWriter(name);
+                CSVWriter csv_wr = new CSVWriter(name);
                 
                 for(Object elem: csv_list){
-//                    csv_wr.write((String[]) elem);
+                    csv_wr.write((String[]) elem);
 }
 
                 // Mostramos el mensaje
