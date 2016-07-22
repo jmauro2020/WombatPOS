@@ -69,7 +69,10 @@ public class ScaleEK1200 implements Scale, SerialPortEventListener {
             // Ya estamos en SCALE_READY
             m_dWeightBuffer = 0.0;
             m_dWeightDecimals = 1.0;
-            write(new byte[] {0x57}); // W
+//            write(new byte[] {0x57}); // W
+            write(new byte[] {0x51}); // Q
+     //       write(new byte[] {0x0D}); // CR
+     //       write(new byte[] {0x0A}); // LF
             flush();             
             
             // Esperamos un ratito
@@ -112,7 +115,7 @@ public class ScaleEK1200 implements Scale, SerialPortEventListener {
                 m_CommPortPrinter.addEventListener(this);
                 m_CommPortPrinter.notifyOnDataAvailable(true);
                 
-                m_CommPortPrinter.setSerialPortParams(9600, SerialPort.DATABITS_7, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN); // Configuramos el puerto
+                m_CommPortPrinter.setSerialPortParams(2400, SerialPort.DATABITS_7, SerialPort.STOPBITS_1, SerialPort.PARITY_EVEN); // Configuramos el puerto
             }
             m_out.write(data);
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | TooManyListenersException | IOException e) {
@@ -145,7 +148,8 @@ public class ScaleEK1200 implements Scale, SerialPortEventListener {
                                 m_iStatusScale = SCALE_READY;
                                 notifyAll();
                             }
-                        } else if ((b > 0x002F && b < 0x003A) || b == 0x002E){
+                      //   forward slash '/'     colon ':'      period '.'
+                        } else if ((b > 0x002F && b < 0x003A) || b == 0x002E){   //if b = 0-9 or = .
                             synchronized(this) {
                                 if (m_iStatusScale == SCALE_READY) {
                                     m_dWeightBuffer = 0.0; // se supone que esto debe estar ya garantizado
@@ -155,6 +159,7 @@ public class ScaleEK1200 implements Scale, SerialPortEventListener {
                                 if (b == 0x002E) {
                                     m_iStatusScale = SCALE_READINGDECIMALS;
                                 } else {
+                                                                             //  zero '0'
                                     m_dWeightBuffer = m_dWeightBuffer * 10.0 + b - 0x0030;
                                     if (m_iStatusScale == SCALE_READINGDECIMALS) {
                                         m_dWeightDecimals *= 10.0;

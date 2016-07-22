@@ -167,7 +167,8 @@ public class JRootApp extends JPanel implements AppView, DeviceMonitorEventListe
             // trigger a REMOVAL event the n-th time an iButton is found to be
             // missing.  Reducing this value can speed up detection but may
             // result in false 'removals' if the user fumbles with the iButton.
-            m_oneWireMonitor.setMaxStateCount(100);
+            // commenting out setMaxStateCount allows us to use the push button reader
+            //m_oneWireMonitor.setMaxStateCount(100);
 
             m_oneWireMonitor.addDeviceMonitorEventListener(this);
 
@@ -240,8 +241,8 @@ public class JRootApp extends JPanel implements AppView, DeviceMonitorEventListe
                 user = m_dlSystem.findPeopleByCard(iButtonId);
             } catch (BasicException e) {}
 
-            if (user == null) {
-                JMessageDialog.showMessage(this, new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.nocard")));
+            if (user == null) {  // suppress user card not in found since we're using ibuttons
+//                JMessageDialog.showMessage(this, new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.nocard")));
             } else {
                 // hide the view temporarily to avoid repeated window redraws
                 setVisible(false);
@@ -427,7 +428,7 @@ public class JRootApp extends JPanel implements AppView, DeviceMonitorEventListe
             if (newText.equals("")){
             jLabel1.setText("<html><center>WombatPOS - Secure Point of Sale<br>" +
             "Copyright \u00A9 2016 Wombat Limited <br>" +
-            "http://www.unicenta.com/<br>" +
+            "https://www.wombatpos.com/<br>" +
             "<br>" +
             "WombatPOS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br>" +
             "<br>" +
