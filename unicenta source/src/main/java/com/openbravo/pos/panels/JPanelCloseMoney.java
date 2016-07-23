@@ -33,11 +33,9 @@ import com.openbravo.pos.printer.TicketPrinterException;
 import com.openbravo.pos.scripting.ScriptEngine;
 import com.openbravo.pos.scripting.ScriptException;
 import com.openbravo.pos.scripting.ScriptFactory;
-import com.openbravo.data.loader.PreparedSentence;
-import com.openbravo.data.loader.SerializerReadClass;
-import com.openbravo.data.loader.SerializerWriteString;
-import com.openbravo.pos.ticket.TicketLineInfo;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,10 +43,10 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-import java.util.List;
-import java.io.File;
+import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -281,7 +279,7 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
             try {
                 ScriptEngine script = ScriptFactory.getScriptEngine(ScriptFactory.VELOCITY);
                 script.put("payments", m_PaymentsToClose);
-                script.put("nosales",result.toString());                
+                script.put("nosales",result.toString());    
                 m_TTP.printTicket(script.eval(sresource).toString());
 // JG 16 May 2012 use multicatch
             } catch (ScriptException | TicketPrinterException e) {
@@ -805,25 +803,76 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
 
                 // print report
                 printPayments("Printer.CloseCash");
+                Iterator<PaymentsModel.PaymentsLine> plines = m_PaymentsToClose.getPaymentLines().iterator();
+                Iterator<PaymentsModel.SalesLine> slines = m_PaymentsToClose.getSaleLines().iterator();
+                Iterator<PaymentsModel.CategorySalesLine> cslines = m_PaymentsToClose.getCategorySalesLines().iterator();
+                Iterator<PaymentsModel.ProductSalesLine> pslines = m_PaymentsToClose.getProductSalesLines().iterator();
+                //Iterator<PaymentsModel.RemovedProductLine> rplines = m_PaymentsToClose.getRemovedProductLines().iterator();
+                
+                ArrayList<String> allattrs = new ArrayList<String>();
+                allattrs.add("paytype"); allattrs.add("payvalue"); allattrs.add("payreason");
+                allattrs.add("taxname"); allattrs.add("taxamt"); allattrs.add("categoryname");
+                allattrs.add("categoryunits"); allattrs.add("productname"); allattrs.add("productunits");
+                allattrs.add("productprice"); allattrs.add("taxrate"); allattrs.add("fullprice");
+                
+                PaymentsModel.PaymentsLine pline;
+                PaymentsModel.SalesLine sline;
+                PaymentsModel.CategorySalesLine csline;
+                PaymentsModel.ProductSalesLine psline;
+                
+                String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + dNow + ".csv";
+                File backupfile = new File(name);
+                backupfile.getParentFile().mkdirs();
+
+                System.out.println(name);
+                try {
+                    backupfile.createNewFile();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
+                
+                CSVWriter csv_wr = new CSVWriter(backupfile);
+                csv_wr.write(allattrs);
+                
+                while (plines.hasNext() && slines.hasNext() && cslines.hasNext() && pslines.hasNext()){
+                    pline = plines.next(); sline = slines.next();
+                    csline = cslines.next(); psline = pslines.next();
+                    allattrs.clear();
+                    allattrs.add(pline.printType()); allattrs.add(pline.printValue()); allattrs.add(pline.printReason());
+                    allattrs.add(sline.printTaxName()); allattrs.add(sline.printTaxes()); allattrs.add(csline.printCategoryName());
+                    allattrs.add(csline.printCategoryUnits()); allattrs.add(psline.printProductName()); allattrs.add(psline.printProductUnits());
+                    allattrs.add(psline.printProductPrice()); allattrs.add(psline.printTaxRate()); allattrs.add(psline.printProductPriceTax());
+                    csv_wr.write(allattrs);
+                }
+                
+                csv_wr.close();
                 
                 // TODO: make csv
-                PreparedSentence ps_csv = new PreparedSentence(s,
+                
+/*                StaticSentence ss_csv = new StaticSentence(m_App.getSession(),
                     "SELECT L.TICKET, L.LINE, L.PRODUCT, L.ATTRIBUTESETINSTANCE_ID, L.UNITS, L.PRICE, T.ID, T.NAME, T.CATEGORY, T.CUSTCATEGORY, T.PARENTID, T.RATE, T.RATECASCADE, T.RATEORDER, L.ATTRIBUTES "
                     + "FROM TICKETLINES L, TAXES T WHERE L.TAXID = T.ID AND L.TICKET = ? ORDER BY L.LINE",
                     SerializerWriteString.INSTANCE, new SerializerReadClass(
                         TicketLineInfo.class)
                 );
 
-                List csv_list = ps_csv.list(m_App.getActiveCashIndex());
-                String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + "backupcsv" + dNow + ".csv";
-
-                new File(name).mkdirs(); // ensures the csv export file exists
-                
-                CSVWriter csv_wr = new CSVWriter(name);
-                
-                for(Object elem: csv_list){
-                    csv_wr.write((String[]) elem);
+                List csv_list = ss_csv.list(m_App.getActiveCashIndex());*/
+                /*String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + dNow + ".csv";
+                File backupfile = new File(name);
+                backupfile.mkdirs();
+                try{
+                    backupfile.createNewFile();
+                } catch (IOException io){
+                    io.printStackTrace();
                 }
+
+                CSVWriter csv_wr = new CSVWriter(name);*/
+                
+                /*
+                for(Object elem: csv_list){
+                    System.out.println(elem);
+                    //csv_wr.write((String[]) elem);
+                }*/ 
 
                 // Mostramos el mensaje
                 JOptionPane.showMessageDialog(this, AppLocal.getIntString("message.closecashok"), AppLocal.getIntString("message.title"), JOptionPane.INFORMATION_MESSAGE);
