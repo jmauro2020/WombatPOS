@@ -820,16 +820,20 @@ public class JPanelCloseMoney extends JPanel implements JPanelView, BeanFactoryA
                 PaymentsModel.CategorySalesLine csline;
                 PaymentsModel.ProductSalesLine psline;
                 
-                String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + dNow + ".csv";
+                String datestr = dNow.toGMTString();
+                datestr = datestr.replaceAll("\\s","");
+                datestr = datestr.replaceAll(":","");
+                String name = System.getProperty("user.dir") + File.separator + "csvexports" + File.separator + datestr + ".csv";
                 File backupfile = new File(name);
                 backupfile.getParentFile().mkdirs();
 
                 System.out.println(name);
-                try {
+                try{
                     backupfile.createNewFile();
-                } catch (IOException io) {
+                } catch (IOException io){
                     io.printStackTrace();
                 }
+                
                 
                 CSVWriter csv_wr = new CSVWriter(backupfile);
                 csv_wr.write(allattrs);
