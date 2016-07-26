@@ -8,6 +8,7 @@ package com.openbravo.pos.panels;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.List;
 
 
 /**
@@ -15,30 +16,29 @@ import java.io.PrintWriter;
  * @author Matthew
  */
 public class CSVWriter {
-    private final String filename;
     private PrintWriter csv_pw;
     
-    public CSVWriter(String filename){
-        this.filename = filename;
+    public CSVWriter(File file){
         try{
-            this.csv_pw = new PrintWriter(new File(this.filename));
+            this.csv_pw = new PrintWriter(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     
-    public void write(String[] arr){
+    public void write(List<String> arr){
         StringBuilder newline = new StringBuilder();
         for(String elem: arr){
             newline.append(elem);
             newline.append(',');
         }
         newline.setCharAt(newline.length()-1,'\n');
-        csv_pw.print(newline.toString());
+        System.out.println(newline.toString());
+        this.csv_pw.print(newline.toString());
     }
     
     public void close(){
-        csv_pw.close();
+        this.csv_pw.close();
     }
     
     

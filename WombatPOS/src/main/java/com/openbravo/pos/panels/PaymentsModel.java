@@ -63,7 +63,7 @@ public class PaymentsModel {
     // end
     
     // added by janar153 @ 29.12.2013
-    private java.util.List<RemovedProductLines> m_lremovedlines;
+    private java.util.List<RemovedProductLine> m_lremovedlines;
     // end
     
     private final static String[] PAYMENTHEADERS = {"Label.Payment", "label.Money"};
@@ -159,7 +159,7 @@ public class PaymentsModel {
             p.m_dCategorySalesTotal= (Double) valcategorysales[2];
         }
 
-        List categorys = new StaticSentence(app.getSession()
+        List categories = new StaticSentence(app.getSession()
             , "SELECT a.NAME, sum(c.UNITS), sum(c.UNITS * (c.PRICE + (c.PRICE * d.RATE))) " +
               "FROM CATEGORIES as a " +
               "LEFT JOIN PRODUCTS as b on a.id = b.CATEGORY " +
@@ -172,10 +172,10 @@ public class PaymentsModel {
             , new SerializerReadClass(PaymentsModel.CategorySalesLine.class)) //new SerializerReadBasic(new Datas[] {Datas.STRING, Datas.DOUBLE}))
             .list(app.getActiveCashIndex());
 
-        if (categorys == null) {
+        if (categories == null) {
             p.m_lcategorysales = new ArrayList();
         } else {
-            p.m_lcategorysales = categorys;
+            p.m_lcategorysales = categories;
         }        
 // end
         
@@ -268,7 +268,7 @@ public class PaymentsModel {
               "WHERE LINEREMOVED.REMOVEDDATE > ? " +
               "GROUP BY LINEREMOVED.NAME, LINEREMOVED.TICKETID, LINEREMOVED.PRODUCTNAME"
             , SerializerWriteString.INSTANCE
-            , new SerializerReadClass(PaymentsModel.RemovedProductLines.class)) //new SerializerReadBasic(new Datas[] {Datas.STRING, Datas.DOUBLE}))
+            , new SerializerReadClass(PaymentsModel.RemovedProductLine.class)) //new SerializerReadBasic(new Datas[] {Datas.STRING, Datas.DOUBLE}))
             .list(startDateFormatted);
         
         if (removedLines == null) {
@@ -614,7 +614,7 @@ public class PaymentsModel {
      *
      * @return
      */
-        public List<RemovedProductLines> getRemovedProductLines() {
+        public List<RemovedProductLine> getRemovedProductLines() {
         return m_lremovedlines;
     }
     // end
@@ -720,7 +720,7 @@ public class PaymentsModel {
     /**
      *
      */
-        public static class RemovedProductLines implements SerializableRead {
+        public static class RemovedProductLine implements SerializableRead {
         private String m_Name;
         private String m_TicketId;
         private String m_ProductName;
